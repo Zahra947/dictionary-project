@@ -7,6 +7,7 @@ export default function Dictionary() {
 
   function search(event) {
     event.preventDefault();
+    alert(`${keyword}`);
   }
 
   function handleKeyword(event) {
