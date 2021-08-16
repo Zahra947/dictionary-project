@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Results from "./Results";
 import "./Dictionary.css";
 
 export default function Dictionary() {
   //this state will save the submitted data to keep track of it
   let [keyword, setKeyword] = useState("");
+  let [results, setResults] = useState(null);
+  //put the default variable null to get better results in if cindition in results component
 
   function handleResponse(response) {
-    console.log(response.data[0]);
+    setResults(response.data[0]);
   }
 
   function search(event) {
@@ -21,8 +24,11 @@ export default function Dictionary() {
     setKeyword(event.target.value);
   }
   return (
-    <form onSubmit={search}>
-      <input type="search" onChange={handleKeyword}></input>
-    </form>
+    <div>
+      <form onSubmit={search}>
+        <input type="search" onChange={handleKeyword}></input>
+      </form>
+      <Results results={results} />
+    </div>
   );
 }
