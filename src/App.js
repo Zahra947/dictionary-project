@@ -9,7 +9,7 @@ export default function App() {
         <main>
           <Dictionary defaultKeyword="Hello" />
         </main>
-        <footer className="footer">
+        <footer className="App-footer">
           <small> Coded by Zahra Rabiei</small>
         </footer>
       </div>
