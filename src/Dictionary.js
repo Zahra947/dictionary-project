@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Results from "./Results";
+import Photos from "./Photos";
 import "./Dictionary.css";
 
 export default function Dictionary(props) {
@@ -10,14 +11,28 @@ export default function Dictionary(props) {
   //put the default variable null to get better results in if cindition in results component
   let [loaded, setLoaded] = useState(false);
   //for the first time we can know the page is loading
+  let [photos, setPhotoes] = useState(null);
+  //for tracking the photoes related to the word
 
-  function handleResponse(response) {
+  function handleDictionary(response) {
     setResults(response.data[0]);
+  }
+
+  function handlePexelsResponse(response) {
+    console.log(response);
+    setPhotoes(response.data.photos);
   }
 
   function search() {
     let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
-    axios.get(apiUrl).then(handleResponse);
+    axios.get(apiUrl).then(handleDictionary);
+
+    let pexelsApiKey =
+      "563492ad6f91700001000001cf830f5e53384745aac43152f86d77a0";
+    let pexelsUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=6`;
+    axios
+      .get(pexelsUrl, { headers: { Authorization: `Bearer ${pexelsApiKey}` } })
+      .then(handlePexelsResponse);
   }
 
   function handleSubmit(event) {
@@ -47,6 +62,7 @@ export default function Dictionary(props) {
             ></input>
           </form>
           <Results results={results} />
+          <Photos photos={photos} />
         </section>
       </div>
     );
