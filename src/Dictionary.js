@@ -15,13 +15,14 @@ export default function Dictionary(props) {
     setResults(response.data[0]);
   }
 
-  function search(event) {
+  function search() {
     let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
     axios.get(apiUrl).then(handleResponse);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+    search();
   }
 
   function handleKeyword(event) {
@@ -35,7 +36,7 @@ export default function Dictionary(props) {
   }
   if (loaded) {
     return (
-      <div className="dictionary">
+      <div className="shadow p-3 mb-5 bg-white rounded dictionary">
         <h1>What word do you look up?</h1>
         <section>
           <form onSubmit={handleSubmit}>
