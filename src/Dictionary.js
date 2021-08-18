@@ -51,19 +51,26 @@ export default function Dictionary(props) {
   }
   if (loaded) {
     return (
-      <div className="shadow p-3 mb-5 bg-white rounded dictionary">
-        <h1>What word do you look up?</h1>
+      <div className=" dictionary">
         <section>
+          <label>What word do you look up?</label>
           <form onSubmit={handleSubmit}>
             <input
+              className="input"
               type="search"
               onChange={handleKeyword}
               defaultValue={props.defaultKeyword}
             ></input>
+            <input
+              className="search"
+              type="submit"
+              value="Look Up"
+              width="20%"
+            />
           </form>
-          <Results results={results} />
-          <Photos photos={photos} />
         </section>
+        <Results results={results} />
+        <Photos photos={photos} />
       </div>
     );
   } else {
