@@ -10,7 +10,16 @@ export default function App() {
           <Dictionary defaultKeyword="Sun" />
         </main>
         <footer className="App-footer">
-          <small> Coded by Zahra Rabiei</small>
+          <small>
+            <a
+              href="https://github.com/Zahra947/dictionary-project"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open-source Code
+            </a>{" "}
+            by Zahra Rabiei
+          </small>
         </footer>
       </div>
     </div>
